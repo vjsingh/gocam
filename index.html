@@ -35,28 +35,22 @@
 
 <p>This was my capstone project for my Machine Learning class at Brown.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h3>Abstract</h3>
+<p>Gocam provides the beginnings of a solution to a real problem: the ability to play a go game on a physical board, but record the game on a computer for playback and sharing. My Gocam program takes in an image file, and then given where the four corners of the go board are, attempts to reliably figure out the state of the board (i.e. for every grid spot, whether it is empty, black, or white). Future improvements include: Detecting the four corners automatically (I began work on this), using pixel colors to more reliably detect the white/black/no stone split, and ultimately taking in a video stream, detecting when a move is played, and then recording an entire game automatically.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>Method</h3>
 
-<h3>Designer Templates</h3>
+<p>First I convert the image into black and white. Then, I get the corners of the board from as input from the user. I then do a projective transformation to make the grid square and uniform. This entails creating a projective 'tform' object in matlab, mapping the the four corners to (0,0) (newImageSize,0) (newImageSize,newImageSize), and (0, newImageSize). I then crop the new image so that it contains only the board. This results in a new image (projectedImage), which contains only the board, and the game grid should now be square and uniform.</p>
+<p> Then, I attempt to find the edges of the actual game grid (as opposed to the entire board). I do this by first finding the edges in the image, and then finding both hough lines and hough circles from the edges in the image. Finally, I take the extreme in the top/right/bottom/left directions of all the lines and the (midpoints of the) circles, which are beyond a 5 px margin of the sides of the image (since sometimes the edge of the board still shows up after the projective transformation), and these are the edges of the grid.</p>
+<p>With the edges of the game grid, I can easily compute the positions of every 19x19 grid spot on the image. I simply divide the grid up from top to bottom and left to right into 19x19 even locations, which produces the entire game grid. </p>
+<p>Then, I go through every single point on the game grid, and compute whether there is a black, white, or no stone there. This is the lengthiest operation by far. To do this, I </p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
+<h3>Further Improvements</h3>
 
 <p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
 
-<h3>Authors and Contributors</h3>
+<p>Created by <a href="https://github.com/vjsingh" class="user-mention">@mention</a> </p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
     </div>
 
