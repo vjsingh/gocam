@@ -40,14 +40,14 @@
 
 <h3>Method</h3>
 
-<p> Original Image>
+<p> <b> Original Image</b></p>
 <img src="./images/mine/board1.jpg"> </img>
 
 <p>First I convert the image into black and white. Then, I get the corners of the board from as input from the user. I then do a projective transformation to make the grid square and uniform. This entails creating a projective 'tform' object in matlab, mapping the the four corners to (0,0) (newImageSize,0) (newImageSize,newImageSize), and (0, newImageSize). I then crop the new image so that it contains only the board. This results in a new image (projectedImage), which contains only the board, and the game grid should now be square and uniform.</p>
 <img src="./images/mine/projectiveTransform.jpg"> </img>
 
 <p> Then, I attempt to find the edges of the actual game grid (as opposed to the entire board). I do this by first finding the edges in the image, and then finding both hough lines and hough circles from the edges in the image. Finally, I take the extreme in the top/right/bottom/left directions of all the lines and the (midpoints of the) circles, which are beyond a 5 px margin of the sides of the image (since sometimes the edge of the board still shows up after the projective transformation), and these are the edges of the grid.</p>
-<p> All Lines, Extreme Lines, All Circles</p>
+<p> <b> All Lines, Outside Lines, All Circles</b> </p>
 <img src="./images/mine/allLines.jpg"> </img>
 <img src="./images/mine/extremeLines.jpg"> </img>
 <img src="./images/mine/circles.jpg"> </img>
@@ -60,11 +60,10 @@
 <p> Finally, I convert the board game into the <a href="http://senseis.xmp.net/?SmartGameFormat"> SGF </a> format. 
 
 <h3>Results</h3>
-<p> Gocam succesfully determined the board game state, with 100% accuracy, of <a href="./images/mine/results.png"> 2 out of my 3 main test images </a>. The <a href="./images/mine/board2.png"> third image </a> was difficult because the white stones and board color were almost the same. Here are the links to SGF for the <a href="./data/board1.sgf"> first </a> and <a href="./data/overhead1.sgf"> second </a> images. </p>
+<p> Gocam succesfully determined the board game state, with 100% accuracy, of <a href="./images/mine/results.png"> 2 out of my 3 main test images </a>. The <a href="./images/mine/board2.png"> third image </a> was difficult because the white stones and board color were almost the same. Here are the links to SGF files for the <a href="./data/board1.sgf"> first </a> and <a href="./data/overhead1.sgf"> second </a> images. </p>
 
 <h3>Further Improvements</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+</a> </a>
 
 <p>Created by <a href="https://github.com/vjsingh" class="user-mention">@mention</a> </p>
 
