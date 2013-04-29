@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Gocam : Detects the board state of a go game given an image" />
+    <meta name="description" content="GoCam : Detects the board state of a go game given an image" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Gocam</title>
+    <title>GoCam</title>
   </head>
 
   <body>
@@ -18,7 +18,7 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/vjsingh/gocam">View on GitHub</a>
 
-          <h1 id="project_title">Gocam</h1>
+          <h1 id="project_title">GoCam</h1>
           <h2 id="project_tagline">Detects the board state of a go game given an image</h2>
 
             <section id="downloads">
@@ -31,12 +31,12 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>Gocam by Varun Singh</h3>
+        <h3>GoCam by Varun Singh</h3>
 
 <p>This was my capstone project for my Machine Learning class at Brown.</p>
 
 <h3>Abstract</h3>
-<p>Gocam provides the beginnings of a solution to a real problem: the ability to play a go game on a physical board, but record the game on a computer for playback and sharing. My Gocam program takes in an image file, and then given where the four corners of the go board are, attempts to reliably figure out the state of the board (i.e. for every grid spot, whether it is empty, black, or white). Future improvements include: Detecting the four corners automatically (I began work on this), using pixel color information to more reliably detect the white/black/no stone split, and ultimately taking in a video stream, detecting when a move is played, and then recording an entire game automatically.</p>
+<p>GoCam provides the beginnings of a solution to a real problem: the ability to play a go game on a physical board, but record the game on a computer for playback and sharing. My GoCam program takes in an image file, and then given where the four corners of the go board are, attempts to reliably figure out the state of the board (i.e. for every grid spot, whether it is empty, black, or white). Future improvements include: Detecting the four corners automatically (I began work on this), using pixel color information to more reliably detect the white/black/no stone split, and ultimately taking in a video stream, detecting when a move is played, and then recording an entire game automatically.</p>
 
 <h3>Method</h3>
 
@@ -60,13 +60,13 @@
 <p> Finally, I convert the board game into the <a href="http://senseis.xmp.net/?SmartGameFormat"> SGF </a> format. 
 
 <h3>Results</h3>
-<p> Gocam succesfully determined the board game state, with 100% accuracy, of <a href="./images/mine/results.png"> 2 out of my 3 main test images </a>. The <a href="./images/mine/board2.png"> third image </a> was difficult because the white stones and board color were almost the same. Here are the links to SGF files for the <a href="./data/board1.sgf"> first </a> and <a href="./data/overhead1.sgf"> second </a> images. </p>
+<p> GoCam succesfully determined the board game state, with 100% accuracy, of <a href="./images/mine/results.png"> 2 out of my 3 main test images </a>. The <a href="./images/mine/board2.png"> third image </a> was difficult because the white stones and board color were almost the same. Here are the links to SGF files for the <a href="./data/board1.sgf"> first </a> and <a href="./data/overhead1.sgf"> second </a> images. </p>
 
 <h3>Further Improvements</h3>
 <p> First, clearly, I'd like to obtain more test images and see how robust my solution is. I plan on doing this soon. </p>
-<p> Then, I'd like to make the stone detecting more robust. I think I could use color information to more reliably detect the stones, instead of using just the brightness mangnitude. Also, with more data, I could get better estimates for upper and lower thresholds.</p>
-<p> This would take more time, but reliably detecting the edges of the board would make the entire process automatic, which would would be a huge step up. I don't think it would be incredible difficult, my main issues were extraneous edges in the image beyond the board, and perspective+stones making one or more edges not visible. Once this is done, I could make this an executable, and then potentially make it available online, so people could upload an image and get an SGF file back. </p>
-<p> Finally, the ultimate goal of this project is to take in a video stream and record an entire game. This sounds impressive, but once it works reliably for single images, it wouldn't be too hard to see if a move was made. Simply make sure nothing is moving in the video (i.e. that no one is actively making a move or pointing at the board), and then record the new state. String these all together and you'll get an SGF of the entire game. </p>
+<p> Then, I'd like to make the stone detecting more robust. I think I could use color information to more reliably detect the stones, instead of using just the brightness magnitude. Also, with more data, I could get better estimates for upper and lower thresholds.</p>
+<p> This would take more time, but reliably detecting the edges of the board would make the entire process automatic, which would would be a huge step up. I don't think it would be that much more work; my main issues were extraneous edges in the image beyond the board, and perspective+stones making one or more edges not visible. Once this is done, I could make GoCam an executable, and then potentially make it available online, so people could upload an image and get an SGF file back. </p>
+<p> Finally, the ultimate goal of this project is to take in a video stream and record an entire game. This sounds impressive, but once GoCam works reliably for single images, it wouldn't be too hard to see if a move was made. Simply make sure nothing is moving in the video (i.e. that no one is actively making a move or pointing at the board), and then record the new state. String these all together and you'll get an SGF of the entire game. </p>
 
 <h2> Thanks for Reading! </h2>
 
@@ -78,7 +78,7 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Gocam maintained by <a href="https://github.com/vjsingh">vjsingh</a></p>
+        <p class="copyright">GoCam maintained by <a href="https://github.com/vjsingh">vjsingh</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
