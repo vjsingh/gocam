@@ -1,0 +1,15 @@
+% Angle is angle of the line you want
+% I use theta of the line segments, which should be 90 deg. off
+function[goodLines] = getLinesByAngle(lines, angle) 
+threshold = 5;
+angle = abs(angle - 90);
+
+goodLines = {};
+angleOfLineIsGood = (mod(lines.
+for i = 1:size(lines)
+    line = lines(i);
+    lineAng = abs(line.theta);
+    if (lineAng < angle + threshold) || (lineAng > angle - threshold)
+        goodLines = goodLines + line;
+    end
+end

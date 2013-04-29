@@ -1,0 +1,10 @@
+% Board is nxn
+% 0/1/2 for Black/White/None
+function[] = makeSGF(board)
+
+for i = 1:length(board)
+    for j = 1:length(board)
+        currPiece = board(i, j);
+        
+    end
+end

@@ -1,0 +1,42 @@
+function [ tmap ] = texton_img(img,k,fb)
+% args:
+%       img: single channel image, should be uint8 format in matlab
+%            you can check its type by class(img)
+%       k: number of textons/clusters
+%       fb: filter bank
+% output:
+%       tmap: texton map, tmap(i,j)=texton id (int value)
+%             the size should be the same as the img.
+
+fb = reshape(fb, 1, numel(fb));
+sizefb = numel(fb);
+sizeImg = size(img);
+numRows = sizeImg(1);
+numCols = sizeImg(2);
+filterResponses = zeros(numRows, numCols, sizefb);
+for i=1:sizefb
+    filter = fb{1, i};
+    filteredImage = conv2(img, filter, 'same');
+    for x=1:numRows
+        for y=1:numCols
+            filterResponses(x, y, i) = filteredImage(x, y);
+        end
+    end
+end
+
+% Convert to right format for kmeans:
+% Take all the pixels and lay them out horizontally in a matrix, where
+% each column is one pixel, and each row is a different filter response
+numPixels = numRows*numCols;
+filterResponses = reshape(filterResponses, 1, numPixels, sizefb);
+filterResponses = squeeze(filterResponses)';
+
+size(filterResponses)
+[tmapTemp, ~, ~] = kmeansML(k, filterResponses);
+
+% Convert back to our 2d representation. Pixels are returned all in one
+% row, must put them back in their right 2d place
+tmap = reshape(tmapTemp, numRows, numCols);
+
+end
+

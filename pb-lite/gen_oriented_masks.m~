@@ -1,0 +1,49 @@
+function [masks,masks_h]=gen_oriented_masks(g_orients,g_radii)
+no=numel(g_orients);
+nr=numel(g_radii);
+%for each o and r, generate a PAIR of masks (left and right)
+masks=zeros(no,nr,2);
+
+masks_h=figure; %for visualization
+%use subplot to show the masks
+
+
+%================================
+%create mask pairs at 
+%multiple scales and orientations
+%================================
+for i=1:nr
+    radius = g_radii(i);
+    diameter = 2*radius;
+    origin = radius + 0.5;
+    circle = zeros(diameter, diameter);
+    for x=1:diameter
+        for y=1:diameter
+            myDistance = distance(x, y, origin, origin);
+            if myDistance <= radius
+                circle(x, y) = 1;
+            end
+        end
+    end
+    circle = [circle(:, 1:radius) zeros(diameter, radius)];
+    for j=1:(no*2)
+        if (mod(j, 2) == 1)
+            orientation = g_orients(j/2 + 0.5);
+        end
+        rotatedMask = imrotate(circle, orientation);
+        if (mod(j, 2) == 0)
+            rotatedMask = imrotate(rotatedMask, 180);
+            masks(i, j, 2) = rotatedMask;
+        else
+            masks{i, j, 1) = rotatedMask;
+        end
+        
+        p = ((i - 1) * no * 2) + j;
+        masks_h = subplot(nr, no*2, p);
+        imshow(rotatedMask);
+    end
+end
+
+masks_h = get(masks_h, 'parent'); %Export entire figure
+
+end

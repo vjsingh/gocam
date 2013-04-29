@@ -1,0 +1,34 @@
+function [ fb,h ] = create_filter_bank( orientations, sigmas )
+no=numel(orientations);
+ns=numel(sigmas);
+fb=cell(no,ns);
+
+
+
+
+%must return a cell and a figure handle
+h=figure; %use subplot to show the filters
+
+
+
+
+%================================
+%create filter bank at 
+%multiple scales and orientations
+%================================
+hSize = [3 3];
+for j=1:ns
+    sigma = sigmas(j);
+    gaussFilter = fspecial('gaussian', hSize, sigma);
+    sobelFilter = fspecial('sobel');
+    filter = imfilter(sobelFilter, gaussFilter, 'conv');
+    for i=1:no
+        rotatedFilter = imrotate(filter, orientations(i));
+        fb{i, j} = imshow(rotatedFilter)
+        p = ((j - 1) * no) + i;
+        h = subplot(ns, no,  p);
+        plot(rotatedFilter);
+    end
+end
+end
+
