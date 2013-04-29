@@ -41,7 +41,7 @@
 <h3>Method</h3>
 
 <p>First I convert the image into black and white. Then, I get the corners of the board from as input from the user. I then do a projective transformation to make the grid square and uniform. This entails creating a projective 'tform' object in matlab, mapping the the four corners to (0,0) (newImageSize,0) (newImageSize,newImageSize), and (0, newImageSize). I then crop the new image so that it contains only the board. This results in a new image (projectedImage), which contains only the board, and the game grid should now be square and uniform.</p>
-<img src="./gocam/images/mine/board1.jpg"> </img>
+<img src="./images/mine/board1.jpg"> </img>
 <p> Then, I attempt to find the edges of the actual game grid (as opposed to the entire board). I do this by first finding the edges in the image, and then finding both hough lines and hough circles from the edges in the image. Finally, I take the extreme in the top/right/bottom/left directions of all the lines and the (midpoints of the) circles, which are beyond a 5 px margin of the sides of the image (since sometimes the edge of the board still shows up after the projective transformation), and these are the edges of the grid.</p>
 <p>With the edges of the game grid, I can easily compute the positions of every 19x19 grid spot on the image. I simply divide the grid up from top to bottom and left to right into 19x19 even locations, which produces the entire game grid. </p>
 <p>Then, I go through every single point on the game grid, and compute whether there is a black, white, or no stone there. This is the lengthiest operation by far. To do this, I </p>
